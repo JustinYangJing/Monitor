@@ -90,52 +90,46 @@ Pod::Spec.new do |s|
   #
 
   s.subspec 'Monitor' do |s1|
-  	s1.source_files  = "TextureRender/Monitor/**/*.{h,m,mm,vert,frag}"
+  	s1.source_files  = "TextureRender/Monitor/**/*.{h,m,mm}"
+    s1.public_header_files = "TextureRender/Monitor/**/*.h"
   end
 
   s.subspec 'Opengl' do |s1|
-  	s1.source_files  = "TextureRender/Monitor/**/*.{hpp,cpp,inl}"
+  	s1.source_files  = "TextureRender/Opengl/*.{hpp,cpp}"
+    s1.public_header_files = "TextureRender/Opengl/*.hpp"
+    s1.subspec 'glm' do |s2|
+      s2.source_files  = "TextureRender/Opengl/glm/*.{hpp}"
+      s2.public_header_files = "TextureRender/Opengl/glm/*.hpp"
+
+      s2.subspec 'ext' do |s3|
+        s3.source_files = "TextureRender/Opengl/glm/ext/*.{hpp,inl}"
+        s3.public_header_files = "TextureRender/Opengl/glm/ext/*.{hpp,inl}"
+      end
+
+      s2.subspec 'simd' do |s3|
+        s3.source_files = "TextureRender/Opengl/glm/simd/*.{hpp,inl}"
+        s3.public_header_files = "TextureRender/Opengl/glm/simd/*.{hpp,inl}"
+      end
+
+      s2.subspec 'detail' do |s3|
+        s3.source_files = "TextureRender/Opengl/glm/detail/*.{hpp,inl}"
+        s3.public_header_files = "TextureRender/Opengl/glm/detail/*.{hpp,inl}"
+      end
+
+      s2.subspec 'gtc' do |s3|
+        s3.source_files = "TextureRender/Opengl/glm/gtc/*.{hpp,inl}"
+        s3.public_header_files = "TextureRender/Opengl/glm/gtc/*.{hpp,inl}"
+      end
+
+      s2.subspec 'gtx' do |s3|
+        s3.source_files = "TextureRender/Opengl/glm/gtx/*.{hpp,inl}"
+        s3.public_header_files = "TextureRender/Opengl/glm/gtx/*.{hpp,inl}"
+      end
+    end
   end
 
-  # s.exclude_files = "Classes/Exclude"
 
-  # s.public_header_files = "Classes/**/*.h"
-
-
-  # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  A list of resources included with the Pod. These are copied into the
-  #  target bundle with a build phase script. Anything else will be cleaned.
-  #  You can preserve files from being cleaned, please don't preserve
-  #  non-essential files like tests, examples and documentation.
-  #
-
-  # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
-
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
-
-  # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Link your library with frameworks, or libraries. Libraries do not include
-  #  the lib prefix of their name.
-  #
-
-  # s.framework  = "SomeFramework"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
-
-  # s.library   = "iconv"
-  # s.libraries = "iconv", "xml2"
-
-
-  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If your library depends on compiler flags you can set them in the xcconfig hash
-  #  where they will only apply to your library. If you depend on other Podspecs
-  #  you can include multiple dependencies to ensure it works.
-
+  #s.public_header_files = "TextureRender/Monitor/**/*.h","TextureRender/Opengl/**/*.{hpp,inl}"
+  s.preserve_paths = "glm/**"
   s.requires_arc = true
-
-
 end

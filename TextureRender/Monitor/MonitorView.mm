@@ -10,7 +10,6 @@
 #import <OpenGLES/EAGL.h>
 #include "Shader.hpp"
 
-#import <Masonry/Masonry.h>
 @interface MonitorView()
 @property(nonatomic, strong) CADisplayLink *link;
 @property(nonatomic,weak) UIView *monitorView;
